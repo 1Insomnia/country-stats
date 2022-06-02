@@ -1,13 +1,13 @@
 // React
-import { useState } from "react";
+import { useState } from 'react'
 
 // Components
-import Container from "./components/layout/Container";
-import SearchForm from "./components/form/SearchForm";
-import Test from "./components/data/Test";
+import Container from './components/layout/Container'
+import SearchForm from './components/form/SearchForm'
+import StatsList from './components/data/StatsList'
 
 function App() {
-  const [dataSet, setDataSet] = useState({});
+  const [dataSet, setDataSet] = useState({})
 
   return (
     <main>
@@ -25,11 +25,41 @@ function App() {
       </section>
       <section className="py-8">
         <Container>
-          <Test dataSet={dataSet} />
+          {Object.values(dataSet).length > 0 && (
+            <StatsList testData={dataSet.base} header="Base" />
+          )}
+        </Container>
+      </section>
+      <section className="py-8">
+        <Container>
+          {Object.values(dataSet).length > 0 && (
+            <StatsList testData={dataSet.social} header="Social" />
+          )}
+        </Container>
+      </section>
+      <section className="py-8">
+        <Container>
+          {Object.values(dataSet).length > 0 && (
+            <StatsList testData={dataSet.economic} header="Economic" />
+          )}
+        </Container>
+      </section>
+      <section className="py-8">
+        <Container>
+          {Object.values(dataSet).length > 0 && (
+            <StatsList testData={dataSet.environment} header="Environment" />
+          )}
+        </Container>
+      </section>
+      <section className="py-8">
+        <Container>
+          {Object.values(dataSet).length > 0 && (
+            <StatsList testData={dataSet.institutions} header="Institutions" />
+          )}
         </Container>
       </section>
     </main>
-  );
+  )
 }
 
-export default App;
+export default App

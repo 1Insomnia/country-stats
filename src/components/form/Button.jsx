@@ -6,7 +6,7 @@ const Button = () => {
     >
       Search
     </button>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

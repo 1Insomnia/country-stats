@@ -1,39 +1,29 @@
 // React
-import PropTypes from "prop-types";
-import { useState } from "react";
+import PropTypes from 'prop-types'
+import { useState } from 'react'
 // Lib
-import fetcher from "../../lib/fetcher";
+import fetcher from '../../lib/fetcher'
 // Components
-import Button from "./Button";
+import Button from './Button'
 
 const SearchForm = ({ setDataSet }) => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('')
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setInput(e.target.value);
-  };
+  const handleChange = e => {
+    e.preventDefault()
+    setInput(e.target.value)
+  }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleSubmit = async e => {
+    e.preventDefault()
+    e.stopPropagation()
     // Clear input
-    setInput("");
-    // Fetch Data
-    const { data } = await fetcher(input);
-    const [result] = data;
-    if (data && data.length > 0) {
-      // Set Data State
-      setDataSet({
-        name: result.name,
-        capital: result.capital,
-        iso2: result.iso2,
-        surface_area: result.surface_area,
-        population: result.population,
-        population_density: result.pop_density,
-      });
+    setInput('')
+    const { data, error } = await fetcher(input)
+    if (!error) {
+      setDataSet(data)
     }
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -51,11 +41,11 @@ const SearchForm = ({ setDataSet }) => {
       />
       <Button />
     </form>
-  );
-};
+  )
+}
 
 SearchForm.propTypes = {
-  setDataSet: PropTypes.elementType,
-};
+  setDataSet: PropTypes.elementType
+}
 
-export default SearchForm;
+export default SearchForm
