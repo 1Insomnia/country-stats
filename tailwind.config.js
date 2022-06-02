@@ -7,6 +7,7 @@ module.exports = {
       sans: ['Inter', ...defaultTheme.fontFamily.sans]
     },
     colors: {
+      dark: '#1A0800',
       light: '#fafafa',
       primary: {
         light: '#FFDCCC',

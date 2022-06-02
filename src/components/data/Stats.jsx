@@ -2,9 +2,9 @@ import PropTypes from 'prop-types'
 
 const Stats = ({ title, value }) => {
   return (
-    <div className="text-center p-4 bg-primary text-light rounded-md flex-1">
-      <h3 className="text-xs mb-1">{title}</h3>
-      <p className="text-lg font-bold">{value}</p>
+    <div className="text-center py-6 flex-1 flex items-center justify-between border-b border-gray-3">
+      <h3 className="font-light text-sm lg:text-base">{title}</h3>
+      <p className="text-lg font-semibold lg:text-xl">{value}</p>
     </div>
   )
 }
