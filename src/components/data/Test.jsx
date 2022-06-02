@@ -1,3 +1,4 @@
+// React
 import PropTypes from "prop-types";
 // Components
 import Stats from "./Stats";
