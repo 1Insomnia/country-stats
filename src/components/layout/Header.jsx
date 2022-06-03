@@ -2,7 +2,7 @@ import Container from './Container'
 
 const Header = () => {
   return (
-    <header className="py-8 bg-primary">
+    <header className="py-8 bg-primary shadow-lg">
       <Container>
         <h1 className="text-xl font-bold tracking-tight text-light">
           Country API

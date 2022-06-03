@@ -5,11 +5,18 @@ import { useState } from 'react'
 import Container from './components/layout/Container'
 import SearchForm from './components/form/SearchForm'
 import StatsList from './components/data/StatsList'
+import Select from './components/form/Select'
+//
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 
 function App() {
-  const [dataSet, setDataSet] = useState({})
+  const [dataSet, setDataSet] = useState([])
+  const [category, setCategory] = useState('all')
+  const result =
+    category === 'all'
+      ? dataSet
+      : dataSet.filter(item => item.category === category)
 
   return (
     <>
@@ -17,45 +24,25 @@ function App() {
       <main className="min-h-screen">
         <section className="py-8">
           <Container>
-            <SearchForm setDataSet={setDataSet} />
+            <div className="mb-8">
+              <SearchForm setDataSet={setDataSet} />
+            </div>
+            <div>
+              <Select setCategory={setCategory} />
+            </div>
           </Container>
         </section>
         <section className="py-8">
           <Container>
-            {Object.values(dataSet).length > 0 && (
-              <StatsList testData={dataSet.base} header="Base" />
-            )}
-          </Container>
-        </section>
-        <section className="py-8">
-          <Container>
-            {Object.values(dataSet).length > 0 && (
-              <StatsList testData={dataSet.social} header="Social" />
-            )}
-          </Container>
-        </section>
-        <section className="py-8">
-          <Container>
-            {Object.values(dataSet).length > 0 && (
-              <StatsList testData={dataSet.economic} header="Economic" />
-            )}
-          </Container>
-        </section>
-        <section className="py-8">
-          <Container>
-            {Object.values(dataSet).length > 0 && (
-              <StatsList testData={dataSet.environment} header="Environment" />
-            )}
-          </Container>
-        </section>
-        <section className="py-8">
-          <Container>
-            {Object.values(dataSet).length > 0 && (
-              <StatsList
-                testData={dataSet.institutions}
-                header="Institutions"
-              />
-            )}
+            {result.length > 0 &&
+              result.map((item, index) => (
+                <StatsList
+                  testData={item.data}
+                  header={item.category}
+                  key={index}
+                  activeCategory={category}
+                />
+              ))}
           </Container>
         </section>
       </main>
